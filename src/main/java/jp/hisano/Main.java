@@ -12,6 +12,7 @@ import jp.hisano.wasm_c_api.jnr.WasmCApi;
 import jp.hisano.wasm_c_api.jnr.wasm_byte_vec_t;
 import jp.hisano.wasm_c_api.jnr.wasm_engine_t_pointer;
 import jp.hisano.wasm_c_api.jnr.wasm_extern_vec_t;
+import jp.hisano.wasm_c_api.jnr.wasm_module_t_pointer;
 import jp.hisano.wasm_c_api.jnr.wasm_store_t_pointer;
 import jp.hisano.wasm_c_api.jnr.wasm_val_vec_t;
 
@@ -77,8 +78,8 @@ public class Main {
   }
 		 */
 		System.out.printf("Compiling module...\n");
-		Pointer module = api.wasm_module_new(store, binary.toPointer());
-		if (module.address() == 0) {
+		wasm_module_t_pointer module = api.wasm_module_new(store, binary.toPointer());
+		if (module.getPointer().address() == 0) {
 			System.out.printf("> Error compiling module!\n");
 			System.exit(1);
 		}

@@ -55,9 +55,9 @@ WASM_API_EXTERN void wasm_module_exports(const wasm_module_t*, own wasm_exportty
 WASM_API_EXTERN void wasm_module_serialize(const wasm_module_t*, own wasm_byte_vec_t* out);
 WASM_API_EXTERN own wasm_module_t* wasm_module_deserialize(wasm_store_t*, const wasm_byte_vec_t*);
 	 */
-	void wasm_module_delete(Pointer module);
+	void wasm_module_delete(wasm_module_t_pointer modulePointer);
 
-	Pointer wasm_module_new(wasm_store_t_pointer storePointer, wasm_byte_vec_t_pointer binary);
+	wasm_module_t_pointer wasm_module_new(wasm_store_t_pointer storePointer, wasm_byte_vec_t_pointer binary);
 
 	boolean wasm_module_validate(wasm_store_t_pointer storePointer, wasm_byte_vec_t_pointer binary);
 
@@ -165,7 +165,7 @@ WASM_API_EXTERN void wasm_instance_exports(const wasm_instance_t*, own wasm_exte
 	 */
 	void wasm_instance_delete(Pointer instancePointer);
 
-	Pointer wasm_instance_new(wasm_store_t_pointer storePointer, Pointer modulePointer, wasm_extern_vec_t imports, Pointer trapPointerPointer);
+	Pointer wasm_instance_new(wasm_store_t_pointer storePointer, wasm_module_t_pointer modulePointer, wasm_extern_vec_t imports, Pointer trapPointerPointer);
 
 	void wasm_instance_exports(Pointer instancePointer, wasm_extern_vec_t out);
 
