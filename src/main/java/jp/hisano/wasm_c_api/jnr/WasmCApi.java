@@ -14,9 +14,9 @@ WASM_DECLARE_OWN(engine)
 WASM_API_EXTERN own wasm_engine_t* wasm_engine_new(void);
 WASM_API_EXTERN own wasm_engine_t* wasm_engine_new_with_config(own wasm_config_t*);
 	 */
-	void wasm_engine_delete(Pointer enginePointer);
+	void wasm_engine_delete(wasm_engine_t_pointer enginePointer);
 
-	Pointer wasm_engine_new();
+	wasm_engine_t_pointer wasm_engine_new();
 
 	/*
 // Store
@@ -26,7 +26,7 @@ WASM_DECLARE_OWN(store)
 WASM_API_EXTERN own wasm_store_t* wasm_store_new(wasm_engine_t*);
 	 */
 	void wasm_store_delete(Pointer storePointer);
-	Pointer wasm_store_new(Pointer wasm_engine_t);
+	Pointer wasm_store_new(wasm_engine_t_pointer enginePointer);
 
 	/*
 // Byte vectors

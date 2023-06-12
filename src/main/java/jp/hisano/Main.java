@@ -11,6 +11,7 @@ import jnr.ffi.Pointer;
 import jnr.ffi.Runtime;
 import jp.hisano.wasm_c_api.jnr.WasmCApi;
 import jp.hisano.wasm_c_api.jnr.wasm_byte_vec_t;
+import jp.hisano.wasm_c_api.jnr.wasm_engine_t_pointer;
 import jp.hisano.wasm_c_api.jnr.wasm_extern_vec_t;
 import jp.hisano.wasm_c_api.jnr.wasm_val_vec_t;
 
@@ -20,7 +21,7 @@ public class Main {
 		Runtime runtime = Runtime.getRuntime(api);
 
 		System.out.println("Initializing...");
-		Pointer engine = api.wasm_engine_new();
+		wasm_engine_t_pointer engine = api.wasm_engine_new();
 		Pointer store = api.wasm_store_new(engine);
 
 		System.out.println("Loading binary...");
