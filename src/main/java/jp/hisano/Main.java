@@ -52,7 +52,7 @@ public class Main {
 		File file = new File("hello.wasm");
 		byte[] fileContent = Files.readAllBytes(file.toPath());
 		wasm_byte_vec_t binary = new wasm_byte_vec_t(runtime);
-		api.wasm_byte_vec_new_uninitialized(binary, file.length());
+		api.wasm_byte_vec_new_uninitialized(binary.toPointer(), file.length());
 		binary.data.get().put(0, fileContent, 0, fileContent.length);
 		/*
   // Validate.
@@ -63,7 +63,7 @@ public class Main {
   }
 		 */
 		System.out.printf("Validating module...\n");
-		if (!api.wasm_module_validate(store, binary)) {
+		if (!api.wasm_module_validate(store, binary.toPointer())) {
 			System.out.printf("> Error validating module!\n");
 			System.exit(1);
 		}
@@ -77,7 +77,7 @@ public class Main {
   }
 		 */
 		System.out.printf("Compiling module...\n");
-		Pointer module = api.wasm_module_new(store, binary);
+		Pointer module = api.wasm_module_new(store, binary.toPointer());
 		if (module.address() == 0) {
 			System.out.printf("> Error compiling module!\n");
 			System.exit(1);
@@ -85,7 +85,7 @@ public class Main {
 		/*
   wasm_byte_vec_delete(&binary);
 		*/
-		api.wasm_byte_vec_delete(binary);
+		api.wasm_byte_vec_delete(binary.toPointer());
 		/*
   // Create external print functions.
   printf("Creating callback...\n");

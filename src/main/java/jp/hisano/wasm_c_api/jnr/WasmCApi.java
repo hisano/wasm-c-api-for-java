@@ -35,9 +35,9 @@ WASM_API_EXTERN own wasm_store_t* wasm_store_new(wasm_engine_t*);
 typedef byte_t wasm_byte_t;
 WASM_DECLARE_VEC(byte, )
 	 */
-	void wasm_byte_vec_delete(wasm_byte_vec_t out);
+	void wasm_byte_vec_delete(wasm_byte_vec_t_pointer out);
 
-	void wasm_byte_vec_new_uninitialized(wasm_byte_vec_t out, @size_t long size);
+	void wasm_byte_vec_new_uninitialized(wasm_byte_vec_t_pointer out, @size_t long size);
 
 	/*
 // Modules
@@ -57,9 +57,9 @@ WASM_API_EXTERN own wasm_module_t* wasm_module_deserialize(wasm_store_t*, const 
 	 */
 	void wasm_module_delete(Pointer module);
 
-	Pointer wasm_module_new(wasm_store_t_pointer storePointer, wasm_byte_vec_t binary);
+	Pointer wasm_module_new(wasm_store_t_pointer storePointer, wasm_byte_vec_t_pointer binary);
 
-	boolean wasm_module_validate(wasm_store_t_pointer storePointer, wasm_byte_vec_t binary);
+	boolean wasm_module_validate(wasm_store_t_pointer storePointer, wasm_byte_vec_t_pointer binary);
 
 	/*
 // Function Instances
