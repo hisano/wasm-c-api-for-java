@@ -10,6 +10,4 @@ abstract class wasm_vec_t extends Struct {
 	wasm_vec_t(Runtime runtime) {
 		super(runtime);
 	}
-
-	
 }

@@ -1,9 +1,9 @@
 package jp.hisano.wasm_c_api.jnr;
 
-import jnr.ffi.NativeLong;
 import jnr.ffi.Pointer;
 import jnr.ffi.Runtime;
 import jnr.ffi.annotations.Delegate;
+import jnr.ffi.types.size_t;
 
 public interface WasmCApi {
 	/*
@@ -35,8 +35,9 @@ WASM_API_EXTERN own wasm_store_t* wasm_store_new(wasm_engine_t*);
 typedef byte_t wasm_byte_t;
 WASM_DECLARE_VEC(byte, )
 	 */
-	void wasm_byte_vec_new_uninitialized(wasm_byte_vec_t out, NativeLong size_t);
 	void wasm_byte_vec_delete(wasm_byte_vec_t out);
+
+	void wasm_byte_vec_new_uninitialized(wasm_byte_vec_t out, @size_t long size);
 
 	/*
 // Modules

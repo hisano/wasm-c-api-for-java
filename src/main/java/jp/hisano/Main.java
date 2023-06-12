@@ -6,7 +6,6 @@ import java.nio.file.Files;
 
 import jnr.ffi.LibraryLoader;
 import jnr.ffi.Memory;
-import jnr.ffi.NativeLong;
 import jnr.ffi.Pointer;
 import jnr.ffi.Runtime;
 import jp.hisano.wasm_c_api.jnr.WasmCApi;
@@ -53,7 +52,7 @@ public class Main {
 		File file = new File("hello.wasm");
 		byte[] fileContent = Files.readAllBytes(file.toPath());
 		wasm_byte_vec_t binary = new wasm_byte_vec_t(runtime);
-		api.wasm_byte_vec_new_uninitialized(binary, new NativeLong(file.length()));
+		api.wasm_byte_vec_new_uninitialized(binary, file.length());
 		binary.data.get().put(0, fileContent, 0, fileContent.length);
 		/*
   // Validate.
