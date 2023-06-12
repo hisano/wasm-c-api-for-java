@@ -25,8 +25,9 @@ WASM_DECLARE_OWN(store)
 
 WASM_API_EXTERN own wasm_store_t* wasm_store_new(wasm_engine_t*);
 	 */
-	void wasm_store_delete(Pointer storePointer);
-	Pointer wasm_store_new(wasm_engine_t_pointer enginePointer);
+	void wasm_store_delete(wasm_store_t_pointer storePointer);
+
+	wasm_store_t_pointer wasm_store_new(wasm_engine_t_pointer enginePointer);
 
 	/*
 // Byte vectors
@@ -55,9 +56,9 @@ WASM_API_EXTERN own wasm_module_t* wasm_module_deserialize(wasm_store_t*, const 
 	 */
 	void wasm_module_delete(Pointer module);
 
-	Pointer wasm_module_new(Pointer wasm_store_t, wasm_byte_vec_t binary);
+	Pointer wasm_module_new(wasm_store_t_pointer storePointer, wasm_byte_vec_t binary);
 
-	boolean wasm_module_validate(Pointer wasm_store_t, wasm_byte_vec_t binary);
+	boolean wasm_module_validate(wasm_store_t_pointer storePointer, wasm_byte_vec_t binary);
 
 	/*
 // Function Instances
@@ -82,7 +83,7 @@ WASM_API_EXTERN size_t wasm_func_result_arity(const wasm_func_t*);
 WASM_API_EXTERN own wasm_trap_t* wasm_func_call(
   const wasm_func_t*, const wasm_val_vec_t* args, wasm_val_vec_t* results);
 	 */
-	Pointer wasm_func_new(Pointer store, Pointer functype, wasm_func_callback_t callback);
+	Pointer wasm_func_new(wasm_store_t_pointer storePointer, Pointer functype, wasm_func_callback_t callback);
 	void wasm_func_delete(Pointer func);
 
 	@FunctionalInterface
@@ -162,7 +163,9 @@ WASM_API_EXTERN own wasm_instance_t* wasm_instance_new(
 WASM_API_EXTERN void wasm_instance_exports(const wasm_instance_t*, own wasm_extern_vec_t* out);
 	 */
 	void wasm_instance_delete(Pointer instancePointer);
-	Pointer wasm_instance_new(Pointer storePointer, Pointer modulePointer, wasm_extern_vec_t imports, Pointer trapPointerPointer);
+
+	Pointer wasm_instance_new(wasm_store_t_pointer storePointer, Pointer modulePointer, wasm_extern_vec_t imports, Pointer trapPointerPointer);
+
 	void wasm_instance_exports(Pointer instancePointer, wasm_extern_vec_t out);
 
 	/*

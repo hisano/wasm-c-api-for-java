@@ -13,6 +13,7 @@ import jp.hisano.wasm_c_api.jnr.WasmCApi;
 import jp.hisano.wasm_c_api.jnr.wasm_byte_vec_t;
 import jp.hisano.wasm_c_api.jnr.wasm_engine_t_pointer;
 import jp.hisano.wasm_c_api.jnr.wasm_extern_vec_t;
+import jp.hisano.wasm_c_api.jnr.wasm_store_t_pointer;
 import jp.hisano.wasm_c_api.jnr.wasm_val_vec_t;
 
 public class Main {
@@ -22,7 +23,7 @@ public class Main {
 
 		System.out.println("Initializing...");
 		wasm_engine_t_pointer engine = api.wasm_engine_new();
-		Pointer store = api.wasm_store_new(engine);
+		wasm_store_t_pointer store = api.wasm_store_new(engine);
 
 		System.out.println("Loading binary...");
 		File file = new File("hello.wasm");
