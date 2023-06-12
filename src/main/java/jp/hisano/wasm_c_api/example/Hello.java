@@ -1,4 +1,4 @@
-package jp.hisano;
+package jp.hisano.wasm_c_api.example;
 
 import java.io.File;
 import java.io.IOException;
@@ -16,7 +16,7 @@ import jp.hisano.wasm_c_api.jnr.wasm_module_t_pointer;
 import jp.hisano.wasm_c_api.jnr.wasm_store_t_pointer;
 import jp.hisano.wasm_c_api.jnr.wasm_val_vec_t;
 
-public class Main {
+public class Hello {
 	public static void main(String[] arguments) throws IOException {
 		WasmCApi api = LibraryLoader.create(WasmCApi.class).library("wasmtime").load();
 		Runtime runtime = Runtime.getRuntime(api);
