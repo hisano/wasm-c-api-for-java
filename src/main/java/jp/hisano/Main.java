@@ -21,23 +21,53 @@ public class Main {
 		WasmCApi api = LibraryLoader.create(WasmCApi.class).library("wasmtime").load();
 		Runtime runtime = Runtime.getRuntime(api);
 
-		System.out.println("Initializing...");
+		/*
+  // Initialize.
+  printf("Initializing...\n");
+  wasm_engine_t* engine = wasm_engine_new();
+  wasm_store_t* store = wasm_store_new(engine);
+		 */
+		System.out.printf("Initializing...\n");
 		wasm_engine_t_pointer engine = api.wasm_engine_new();
 		wasm_store_t_pointer store = api.wasm_store_new(engine);
-
-		System.out.println("Loading binary...");
+		/*
+  // Load binary.
+  printf("Loading binary...\n");
+  FILE* file = fopen("hello.wasm", "rb");
+  if (!file) {
+    printf("> Error loading module!\n");
+    return 1;
+  }
+  fseek(file, 0L, SEEK_END);
+  size_t file_size = ftell(file);
+  fseek(file, 0L, SEEK_SET);
+  wasm_byte_vec_t binary;
+  wasm_byte_vec_new_uninitialized(&binary, file_size);
+  if (fread(binary.data, file_size, 1, file) != 1) {
+    printf("> Error loading module!\n");
+    return 1;
+  }
+  fclose(file);
+		 */
+		System.out.printf("Loading binary...\n");
 		File file = new File("hello.wasm");
 		byte[] fileContent = Files.readAllBytes(file.toPath());
 		wasm_byte_vec_t binary = new wasm_byte_vec_t(runtime);
 		api.wasm_byte_vec_new_uninitialized(binary, new NativeLong(file.length()));
 		binary.data.get().put(0, fileContent, 0, fileContent.length);
-
-		System.out.println("Validating module...");
+		/*
+  // Validate.
+  printf("Validating module...\n");
+  if (!wasm_module_validate(store, &binary)) {
+    printf("> Error validating module!\n");
+    return 1;
+  }
+		 */
+		System.out.printf("Validating module...\n");
 		if (!api.wasm_module_validate(store, binary)) {
-			System.out.println("> Error validating module!");
+			System.out.printf("> Error validating module!\n");
 			System.exit(1);
 		}
-
 		/*
   // Compile.
   printf("Compiling module...\n");
@@ -47,10 +77,10 @@ public class Main {
     return 1;
   }
 		 */
-		System.out.println("Compiling module...");
+		System.out.printf("Compiling module...\n");
 		Pointer module = api.wasm_module_new(store, binary);
 		if (module.address() == 0) {
-			System.out.println("> Error compiling module!");
+			System.out.printf("> Error compiling module!\n");
 			System.exit(1);
 		}
 		/*
