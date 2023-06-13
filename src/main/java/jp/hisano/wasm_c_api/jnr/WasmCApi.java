@@ -94,7 +94,7 @@ WASM_API_EXTERN own wasm_trap_t* wasm_func_call(
 		Pointer call(Pointer args, Pointer results);
 	}
 
-	Pointer wasm_func_call(wasm_func_t_pointer funcPointer, wasm_val_vec_t args, wasm_val_vec_t results);
+	wasm_trap_t_pointer wasm_func_call(wasm_func_t_pointer funcPointer, wasm_val_vec_t args, wasm_val_vec_t results);
 	/*
 
 // Value Types
