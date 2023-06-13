@@ -151,7 +151,7 @@ WASM_API_EXTERN const wasm_memory_t* wasm_extern_as_memory_const(const wasm_exte
 
 	wasm_extern_t_pointer wasm_func_as_extern(wasm_func_t_pointer funcPointer);
 
-	Pointer wasm_extern_as_func(Pointer extern);
+	Pointer wasm_extern_as_func(wasm_extern_t_pointer extern);
 
 	/*
 // Module Instances
@@ -169,7 +169,7 @@ WASM_API_EXTERN void wasm_instance_exports(const wasm_instance_t*, own wasm_exte
 
 	wasm_instance_t_pointer wasm_instance_new(wasm_store_t_pointer storePointer, wasm_module_t_pointer modulePointer, wasm_extern_vec_t imports, Pointer trapPointerPointer);
 
-	void wasm_instance_exports(wasm_instance_t_pointer instancePointer, wasm_extern_vec_t out);
+	void wasm_instance_exports(wasm_instance_t_pointer instancePointer, wasm_extern_vec_t_pointer out);
 
 	/*
 // Function Types construction short-hands

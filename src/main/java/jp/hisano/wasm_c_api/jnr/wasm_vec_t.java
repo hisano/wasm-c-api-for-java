@@ -36,7 +36,7 @@ abstract class wasm_vec_t<T extends wasm_t_pointer> extends Struct {
 		if (_rawData != null) {
 			return _rawData[index];
 		}
-		return toData(Struct.getMemory(this).getPointer(index * getRuntime().addressSize()));
+		return toData(data.get().getPointer(index * getRuntime().addressSize()));
 	}
 
 	abstract T toData(jnr.ffi.Pointer pointer);

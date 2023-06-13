@@ -149,12 +149,12 @@ public class Hello {
 		 */
 		System.out.printf("Extracting export...\n");
 		wasm_extern_vec_t exports = new wasm_extern_vec_t(runtime);
-		api.wasm_instance_exports(instance, exports);
+		api.wasm_instance_exports(instance, exports.toPointer());
 		if (exports.size.get() == 0) {
 			System.out.printf("> Error accessing exports!\n");
 			System.exit(1);
 		}
-		Pointer run_func = api.wasm_extern_as_func(exports.data.get().getPointer(0));
+		Pointer run_func = api.wasm_extern_as_func(exports.getData(0));
 		if (run_func.address() == 0) {
 			System.out.printf("> Error accessing export!\n");
 			System.exit(1);
