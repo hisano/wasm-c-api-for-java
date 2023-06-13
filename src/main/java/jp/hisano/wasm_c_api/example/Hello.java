@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 
 import jnr.ffi.LibraryLoader;
-import jnr.ffi.Pointer;
 import jnr.ffi.Runtime;
 import jp.hisano.wasm_c_api.jnr.WasmCApi;
 import jp.hisano.wasm_c_api.jnr.wasm_byte_vec_t;
