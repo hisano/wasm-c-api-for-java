@@ -5,12 +5,12 @@ import java.io.IOException;
 import java.nio.file.Files;
 
 import jnr.ffi.LibraryLoader;
-import jnr.ffi.Memory;
 import jnr.ffi.Pointer;
 import jnr.ffi.Runtime;
 import jp.hisano.wasm_c_api.jnr.WasmCApi;
 import jp.hisano.wasm_c_api.jnr.wasm_byte_vec_t;
 import jp.hisano.wasm_c_api.jnr.wasm_engine_t_pointer;
+import jp.hisano.wasm_c_api.jnr.wasm_extern_t_pointer;
 import jp.hisano.wasm_c_api.jnr.wasm_extern_vec_t;
 import jp.hisano.wasm_c_api.jnr.wasm_func_t_pointer;
 import jp.hisano.wasm_c_api.jnr.wasm_functype_t_pointer;
@@ -119,16 +119,9 @@ public class Hello {
     return 1;
   }
 		 */
-		int pointerSize = runtime.addressSize();
 		System.out.printf("Instantiating module...\n");
-		Pointer[] externs = new Pointer[] { api.wasm_func_as_extern(hello_func) };
-		Pointer externsPointer = Memory.allocateDirect(runtime, externs.length * pointerSize);
-		for (int i = 0; i < externs.length; i++) {
-			externsPointer.putPointer(i * pointerSize, externs[i]);
-		}
-		wasm_extern_vec_t imports = new wasm_extern_vec_t(runtime);
-		imports.size.set(externs.length);
-		imports.data.set(externsPointer);
+		wasm_extern_t_pointer[] externs = new wasm_extern_t_pointer[] { api.wasm_func_as_extern(hello_func) };
+		wasm_extern_vec_t imports = new wasm_extern_vec_t(runtime, externs);
 		Pointer instance = api.wasm_instance_new(store, module, imports, null);
 		if (instance.address() == 0) {
 			System.out.printf("> Error instantiating module!\n");
@@ -192,7 +185,7 @@ public class Hello {
 		/*
   wasm_extern_vec_delete(&exports);
 		 */
-		api.wasm_extern_vec_delete(externsPointer);
+		api.wasm_extern_vec_delete(exports.toPointer());
 		/*
   // Shut down.
   printf("Shutting down...\n");

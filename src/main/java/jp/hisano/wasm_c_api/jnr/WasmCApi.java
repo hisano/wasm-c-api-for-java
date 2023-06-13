@@ -147,9 +147,9 @@ WASM_API_EXTERN const wasm_global_t* wasm_extern_as_global_const(const wasm_exte
 WASM_API_EXTERN const wasm_table_t* wasm_extern_as_table_const(const wasm_extern_t*);
 WASM_API_EXTERN const wasm_memory_t* wasm_extern_as_memory_const(const wasm_extern_t*);
 	 */
-	void wasm_extern_vec_delete(Pointer externVecPointer);
+	void wasm_extern_vec_delete(wasm_extern_vec_t_pointer externVecPointer);
 
-	Pointer wasm_func_as_extern(wasm_func_t_pointer funcPointer);
+	wasm_extern_t_pointer wasm_func_as_extern(wasm_func_t_pointer funcPointer);
 
 	Pointer wasm_extern_as_func(Pointer extern);
 

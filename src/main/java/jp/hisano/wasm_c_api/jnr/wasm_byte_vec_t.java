@@ -8,6 +8,11 @@ public final class wasm_byte_vec_t extends wasm_vec_t {
 		super(runtime);
 	}
 
+	@Override
+	wasm_t_pointer toData(jnr.ffi.Pointer pointer) {
+		return null;
+	}
+
 	public wasm_byte_vec_t_pointer toPointer() {
 		return createFrom(this);
 	}
