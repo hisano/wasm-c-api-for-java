@@ -94,7 +94,7 @@ WASM_API_EXTERN own wasm_trap_t* wasm_func_call(
 		Pointer call(Pointer args, Pointer results);
 	}
 
-	Pointer wasm_func_call(Pointer funcPointer, wasm_val_vec_t args, wasm_val_vec_t results);
+	Pointer wasm_func_call(wasm_func_t_pointer funcPointer, wasm_val_vec_t args, wasm_val_vec_t results);
 	/*
 
 // Value Types
@@ -151,7 +151,7 @@ WASM_API_EXTERN const wasm_memory_t* wasm_extern_as_memory_const(const wasm_exte
 
 	wasm_extern_t_pointer wasm_func_as_extern(wasm_func_t_pointer funcPointer);
 
-	Pointer wasm_extern_as_func(wasm_extern_t_pointer extern);
+	wasm_func_t_pointer wasm_extern_as_func(wasm_extern_t_pointer extern);
 
 	/*
 // Module Instances

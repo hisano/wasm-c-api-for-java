@@ -154,8 +154,8 @@ public class Hello {
 			System.out.printf("> Error accessing exports!\n");
 			System.exit(1);
 		}
-		Pointer run_func = api.wasm_extern_as_func(exports.getData(0));
-		if (run_func.address() == 0) {
+		wasm_func_t_pointer run_func = api.wasm_extern_as_func(exports.getData(0));
+		if (run_func == null) {
 			System.out.printf("> Error accessing export!\n");
 			System.exit(1);
 		}
