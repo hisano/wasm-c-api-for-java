@@ -84,9 +84,9 @@ WASM_API_EXTERN size_t wasm_func_result_arity(const wasm_func_t*);
 WASM_API_EXTERN own wasm_trap_t* wasm_func_call(
   const wasm_func_t*, const wasm_val_vec_t* args, wasm_val_vec_t* results);
 	 */
-	void wasm_func_delete(Pointer func);
+	void wasm_func_delete(wasm_func_t_pointer funcPointer);
 
-	Pointer wasm_func_new(wasm_store_t_pointer storePointer, wasm_functype_t_pointer functypePointer, wasm_func_callback_t funcCallback);
+	wasm_func_t_pointer wasm_func_new(wasm_store_t_pointer storePointer, wasm_functype_t_pointer functypePointer, wasm_func_callback_t funcCallback);
 
 	@FunctionalInterface
 	interface wasm_func_callback_t {
@@ -149,7 +149,7 @@ WASM_API_EXTERN const wasm_memory_t* wasm_extern_as_memory_const(const wasm_exte
 	 */
 	void wasm_extern_vec_delete(Pointer externVecPointer);
 
-	Pointer wasm_func_as_extern(Pointer func);
+	Pointer wasm_func_as_extern(wasm_func_t_pointer funcPointer);
 
 	Pointer wasm_extern_as_func(Pointer extern);
 
