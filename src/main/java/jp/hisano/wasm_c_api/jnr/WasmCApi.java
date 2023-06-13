@@ -180,8 +180,8 @@ static inline own wasm_functype_t* wasm_functype_new_0_0(void) {
 }
 	 */
 	default Pointer wasm_functype_new_0_0() {
-		wasm_valtype_vec_t params = new wasm_valtype_vec_t(Runtime.getSystemRuntime());
-		wasm_valtype_vec_t results = new wasm_valtype_vec_t(Runtime.getSystemRuntime());
+		wasm_valtype_vec_t params = new wasm_valtype_vec_t(Runtime.getRuntime(this));
+		wasm_valtype_vec_t results = new wasm_valtype_vec_t(Runtime.getRuntime(this));
 		wasm_valtype_vec_new_empty(params);
 		wasm_valtype_vec_new_empty(results);
 		return wasm_functype_new(params, results);
