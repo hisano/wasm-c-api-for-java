@@ -14,6 +14,7 @@ import jp.hisano.wasm_c_api.jnr.wasm_extern_t_pointer;
 import jp.hisano.wasm_c_api.jnr.wasm_extern_vec_t;
 import jp.hisano.wasm_c_api.jnr.wasm_func_t_pointer;
 import jp.hisano.wasm_c_api.jnr.wasm_functype_t_pointer;
+import jp.hisano.wasm_c_api.jnr.wasm_instance_t_pointer;
 import jp.hisano.wasm_c_api.jnr.wasm_module_t_pointer;
 import jp.hisano.wasm_c_api.jnr.wasm_store_t_pointer;
 import jp.hisano.wasm_c_api.jnr.wasm_val_vec_t;
@@ -122,8 +123,8 @@ public class Hello {
 		System.out.printf("Instantiating module...\n");
 		wasm_extern_t_pointer[] externs = new wasm_extern_t_pointer[] { api.wasm_func_as_extern(hello_func) };
 		wasm_extern_vec_t imports = new wasm_extern_vec_t(runtime, externs);
-		Pointer instance = api.wasm_instance_new(store, module, imports, null);
-		if (instance.address() == 0) {
+		wasm_instance_t_pointer instance = api.wasm_instance_new(store, module, imports, null);
+		if (instance == null) {
 			System.out.printf("> Error instantiating module!\n");
 			System.exit(1);
 		}

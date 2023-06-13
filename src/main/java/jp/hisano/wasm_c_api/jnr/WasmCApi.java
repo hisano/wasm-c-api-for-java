@@ -165,11 +165,11 @@ WASM_API_EXTERN own wasm_instance_t* wasm_instance_new(
 
 WASM_API_EXTERN void wasm_instance_exports(const wasm_instance_t*, own wasm_extern_vec_t* out);
 	 */
-	void wasm_instance_delete(Pointer instancePointer);
+	void wasm_instance_delete(wasm_instance_t_pointer instancePointer);
 
-	Pointer wasm_instance_new(wasm_store_t_pointer storePointer, wasm_module_t_pointer modulePointer, wasm_extern_vec_t imports, Pointer trapPointerPointer);
+	wasm_instance_t_pointer wasm_instance_new(wasm_store_t_pointer storePointer, wasm_module_t_pointer modulePointer, wasm_extern_vec_t imports, Pointer trapPointerPointer);
 
-	void wasm_instance_exports(Pointer instancePointer, wasm_extern_vec_t out);
+	void wasm_instance_exports(wasm_instance_t_pointer instancePointer, wasm_extern_vec_t out);
 
 	/*
 // Function Types construction short-hands
