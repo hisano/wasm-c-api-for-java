@@ -81,7 +81,7 @@ public class Hello {
 		 */
 		System.out.printf("Compiling module...\n");
 		wasm_module_t_pointer module = api.wasm_module_new(store, binary.toPointer());
-		if (module.getPointer().address() == 0) {
+		if (module == null) {
 			System.out.printf("> Error compiling module!\n");
 			System.exit(1);
 		}
