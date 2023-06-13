@@ -13,6 +13,9 @@ abstract class wasm_vec_t<T extends wasm_t_pointer> extends Struct {
 	wasm_vec_t(Runtime runtime) {
 		super(runtime);
 
+		size.set(0);
+		data.set((jnr.ffi.Pointer) null);
+
 		_rawData = null;
 	}
 

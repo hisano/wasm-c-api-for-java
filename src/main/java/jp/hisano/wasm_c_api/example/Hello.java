@@ -177,8 +177,6 @@ public class Hello {
 		 */
 		System.out.printf("Calling export...\n");
 		wasm_val_vec_t WASM_EMPTY_VEC = new wasm_val_vec_t(runtime);
-		WASM_EMPTY_VEC.size.set(0);
-		WASM_EMPTY_VEC.data.set((Pointer) null);
 		if (api.wasm_func_call(run_func, WASM_EMPTY_VEC, WASM_EMPTY_VEC) != null) {
 			System.out.printf("> Error calling function!\n");
 			System.exit(1);
