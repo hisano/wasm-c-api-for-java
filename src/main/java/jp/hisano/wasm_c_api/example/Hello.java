@@ -12,6 +12,7 @@ import jp.hisano.wasm_c_api.jnr.WasmCApi;
 import jp.hisano.wasm_c_api.jnr.wasm_byte_vec_t;
 import jp.hisano.wasm_c_api.jnr.wasm_engine_t_pointer;
 import jp.hisano.wasm_c_api.jnr.wasm_extern_vec_t;
+import jp.hisano.wasm_c_api.jnr.wasm_functype_t_pointer;
 import jp.hisano.wasm_c_api.jnr.wasm_module_t_pointer;
 import jp.hisano.wasm_c_api.jnr.wasm_store_t_pointer;
 import jp.hisano.wasm_c_api.jnr.wasm_val_vec_t;
@@ -95,7 +96,7 @@ public class Hello {
     wasm_func_new(store, hello_type, hello_callback);
 		 */
 		System.out.printf("Creating callback...\n");
-		Pointer hello_type = api.wasm_functype_new_0_0();
+		wasm_functype_t_pointer hello_type = api.wasm_functype_new_0_0();
 		Pointer hello_func = api.wasm_func_new(store, hello_type, (args, results) -> {
 			System.out.printf("Calling back...\n");
 			System.out.printf("> Hello World!\n");

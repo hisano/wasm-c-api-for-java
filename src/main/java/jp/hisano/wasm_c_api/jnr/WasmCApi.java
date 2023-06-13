@@ -84,8 +84,9 @@ WASM_API_EXTERN size_t wasm_func_result_arity(const wasm_func_t*);
 WASM_API_EXTERN own wasm_trap_t* wasm_func_call(
   const wasm_func_t*, const wasm_val_vec_t* args, wasm_val_vec_t* results);
 	 */
-	Pointer wasm_func_new(wasm_store_t_pointer storePointer, Pointer functype, wasm_func_callback_t callback);
 	void wasm_func_delete(Pointer func);
+
+	Pointer wasm_func_new(wasm_store_t_pointer storePointer, wasm_functype_t_pointer functypePointer, wasm_func_callback_t funcCallback);
 
 	@FunctionalInterface
 	interface wasm_func_callback_t {
@@ -113,8 +114,9 @@ WASM_API_EXTERN own wasm_functype_t* wasm_functype_new(
 WASM_API_EXTERN const wasm_valtype_vec_t* wasm_functype_params(const wasm_functype_t*);
 WASM_API_EXTERN const wasm_valtype_vec_t* wasm_functype_results(const wasm_functype_t*);
 	 */
-	void wasm_functype_delete(Pointer functype);
-	Pointer wasm_functype_new(wasm_valtype_vec_t params, wasm_valtype_vec_t results);
+	void wasm_functype_delete(wasm_functype_t_pointer functypePointer);
+
+	wasm_functype_t_pointer wasm_functype_new(wasm_valtype_vec_t params, wasm_valtype_vec_t results);
 
 	/*
 // Externals
@@ -179,7 +181,7 @@ static inline own wasm_functype_t* wasm_functype_new_0_0(void) {
   return wasm_functype_new(&params, &results);
 }
 	 */
-	default Pointer wasm_functype_new_0_0() {
+	default wasm_functype_t_pointer wasm_functype_new_0_0() {
 		wasm_valtype_vec_t params = new wasm_valtype_vec_t(Runtime.getRuntime(this));
 		wasm_valtype_vec_t results = new wasm_valtype_vec_t(Runtime.getRuntime(this));
 		wasm_valtype_vec_new_empty(params);
