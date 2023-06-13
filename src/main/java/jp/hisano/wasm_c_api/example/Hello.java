@@ -119,14 +119,14 @@ public class Hello {
     return 1;
   }
 		 */
-		int pointerSize = Runtime.getSystemRuntime().addressSize();
+		int pointerSize = runtime.addressSize();
 		System.out.printf("Instantiating module...\n");
 		Pointer[] externs = new Pointer[] { api.wasm_func_as_extern(hello_func) };
 		Pointer externsPointer = Memory.allocateDirect(runtime, externs.length * pointerSize);
 		for (int i = 0; i < externs.length; i++) {
 			externsPointer.putPointer(i * pointerSize, externs[i]);
 		}
-		wasm_extern_vec_t imports = new wasm_extern_vec_t(Runtime.getSystemRuntime());
+		wasm_extern_vec_t imports = new wasm_extern_vec_t(runtime);
 		imports.size.set(externs.length);
 		imports.data.set(externsPointer);
 		Pointer instance = api.wasm_instance_new(store, module, imports, null);
@@ -154,7 +154,7 @@ public class Hello {
   }
 		 */
 		System.out.printf("Extracting export...\n");
-		wasm_extern_vec_t exports = new wasm_extern_vec_t(Runtime.getSystemRuntime());
+		wasm_extern_vec_t exports = new wasm_extern_vec_t(runtime);
 		api.wasm_instance_exports(instance, exports);
 		if (exports.size.get() == 0) {
 			System.out.printf("> Error accessing exports!\n");
@@ -182,7 +182,7 @@ public class Hello {
   }
 		 */
 		System.out.printf("Calling export...\n");
-		wasm_val_vec_t WASM_EMPTY_VEC = new wasm_val_vec_t(Runtime.getSystemRuntime());
+		wasm_val_vec_t WASM_EMPTY_VEC = new wasm_val_vec_t(runtime);
 		WASM_EMPTY_VEC.size.set(0);
 		WASM_EMPTY_VEC.data.set((Pointer) null);
 		if (api.wasm_func_call(run_func, WASM_EMPTY_VEC, WASM_EMPTY_VEC) != null) {
