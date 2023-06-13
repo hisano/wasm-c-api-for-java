@@ -91,7 +91,7 @@ WASM_API_EXTERN own wasm_trap_t* wasm_func_call(
 	@FunctionalInterface
 	interface wasm_func_callback_t {
 		@Delegate
-		Pointer call(Pointer args, Pointer results);
+		wasm_trap_t_pointer call(wasm_val_vec_t_pointer args, wasm_val_vec_t_pointer results);
 	}
 
 	wasm_trap_t_pointer wasm_func_call(wasm_func_t_pointer funcPointer, wasm_val_vec_t args, wasm_val_vec_t results);
