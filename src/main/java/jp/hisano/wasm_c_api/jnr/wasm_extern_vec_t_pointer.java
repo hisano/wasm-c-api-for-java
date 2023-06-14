@@ -18,11 +18,11 @@ public final class wasm_extern_vec_t_pointer extends wasm_t_pointer {
 		return value != null ? value.getPointer() : null;
 	}
 
-	static wasm_extern_vec_t_pointer createFrom(wasm_extern_vec_t source) {
-		return new wasm_extern_vec_t_pointer(Struct.getMemory(source));
-	}
-
 	private wasm_extern_vec_t_pointer(Pointer pointer) {
 		super(pointer);
+	}
+
+	wasm_extern_vec_t_pointer(wasm_extern_vec_t struct) {
+		this(Struct.getMemory(struct));
 	}
 }
