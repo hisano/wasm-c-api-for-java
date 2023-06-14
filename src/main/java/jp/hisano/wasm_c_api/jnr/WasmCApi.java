@@ -101,7 +101,7 @@ WASM_API_EXTERN own wasm_trap_t* wasm_func_call(
 
 WASM_DECLARE_TYPE(valtype)
 	 */
-	void wasm_valtype_vec_new_empty(wasm_valtype_vec_t out);
+	void wasm_valtype_vec_new_empty(wasm_valtype_vec_t_pointer out);
 
 	/*
 // Function Types
@@ -116,7 +116,7 @@ WASM_API_EXTERN const wasm_valtype_vec_t* wasm_functype_results(const wasm_funct
 	 */
 	void wasm_functype_delete(wasm_functype_t_pointer functypePointer);
 
-	wasm_functype_t_pointer wasm_functype_new(wasm_valtype_vec_t params, wasm_valtype_vec_t results);
+	wasm_functype_t_pointer wasm_functype_new(wasm_valtype_vec_t_pointer params, wasm_valtype_vec_t_pointer results);
 
 	/*
 // Externals
@@ -184,8 +184,8 @@ static inline own wasm_functype_t* wasm_functype_new_0_0(void) {
 	default wasm_functype_t_pointer wasm_functype_new_0_0() {
 		wasm_valtype_vec_t params = new wasm_valtype_vec_t(Runtime.getRuntime(this));
 		wasm_valtype_vec_t results = new wasm_valtype_vec_t(Runtime.getRuntime(this));
-		wasm_valtype_vec_new_empty(params);
-		wasm_valtype_vec_new_empty(results);
-		return wasm_functype_new(params, results);
+		wasm_valtype_vec_new_empty(params.toPointer());
+		wasm_valtype_vec_new_empty(results.toPointer());
+		return wasm_functype_new(params.toPointer(), results.toPointer());
 	}
 }
