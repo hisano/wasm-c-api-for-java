@@ -1,6 +1,7 @@
 package jp.hisano.wasm_c_api.jnr;
 
 import jnr.ffi.Pointer;
+import jnr.ffi.Struct;
 import jnr.ffi.mapper.FromNativeContext;
 import jnr.ffi.mapper.FromNativeConverter.FromNative;
 import jnr.ffi.mapper.ToNativeContext;
@@ -17,7 +18,11 @@ public final class wasm_val_vec_t_pointer extends wasm_t_pointer {
 		return value != null ? value.getPointer() : null;
 	}
 
-	wasm_val_vec_t_pointer(Pointer pointer) {
+	private wasm_val_vec_t_pointer(Pointer pointer) {
 		super(pointer);
+	}
+
+	wasm_val_vec_t_pointer(wasm_val_vec_t struct) {
+		this(Struct.getMemory(struct));
 	}
 }
