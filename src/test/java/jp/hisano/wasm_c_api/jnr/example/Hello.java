@@ -1,4 +1,4 @@
-package jp.hisano.wasm_c_api.example;
+package jp.hisano.wasm_c_api.jnr.example;
 
 import java.io.File;
 import java.io.IOException;
