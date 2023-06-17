@@ -4,9 +4,10 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 
-import com.sun.jna.Native;
 import com.sun.jna.platform.unix.LibCAPI;
 
+import jp.hisano.wasm_c_api.jna.Library;
+import static jp.hisano.wasm_c_api.jna.Library.Engine.*;
 import jp.hisano.wasm_c_api.jna.WasmCApi;
 import jp.hisano.wasm_c_api.jna.wasm_engine_t_pointer;
 import jp.hisano.wasm_c_api.jna.wasm_store_t_pointer;
@@ -21,7 +22,7 @@ import jp.hisano.wasm_c_api.jna.wasm_val_vec_t;
 
 public class Hello {
 	public static void main(String[] arguments) throws IOException {
-		WasmCApi api = Native.loadLibrary("wasmtime", WasmCApi.class);
+		WasmCApi api = Library.load(WASMER);
 
 		/*
   // Initialize.
