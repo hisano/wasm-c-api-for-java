@@ -1,4 +1,4 @@
-package jp.hisano.wasm_c_api.tools
+package jp.hisano.wasm_c_api.jna.tools.jp.hisano.wasm_c_api.jna.tools
 
 import java.io.File
 
