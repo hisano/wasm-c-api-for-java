@@ -2,7 +2,7 @@
 
 # How to use
 
-See [the Hello example](src/test/java/jp/hisano/wasm_c_api/jna/example/Hello.java).
+See [a sample application](src/test/java/jp/hisano/wasm_c_api/jna/example/Hello.java).
 
 # Bundled WebAssembly Runtime
 
