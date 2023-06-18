@@ -1,8 +1,8 @@
 package jp.hisano.wasm_c_api.jna.example;
 
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
+
+import com.google.common.io.ByteStreams;
 
 import jp.hisano.wasm_c_api.jna.Library;
 import static jp.hisano.wasm_c_api.jna.Library.Engine.*;
@@ -29,11 +29,10 @@ public class Hello {
 		wasm_store_t_pointer store = api.wasm_store_new(engine);
 
 		System.out.printf("Loading binary...\n");
-		File file = new File("hello.wasm");
-		byte[] fileContent = Files.readAllBytes(file.toPath());
+		byte[] file = ByteStreams.toByteArray(Hello.class.getResourceAsStream("hello.wasm"));
 		wasm_byte_vec_t binary = new wasm_byte_vec_t();
-		api.wasm_byte_vec_new_uninitialized(binary, new size_t(file.length()));
-		binary.data.write(0, fileContent, 0, fileContent.length);
+		api.wasm_byte_vec_new_uninitialized(binary, new size_t(file.length));
+		binary.data.write(0, file, 0, file.length);
 
 		System.out.printf("Validating module...\n");
 		if (!api.wasm_module_validate(store, binary)) {
