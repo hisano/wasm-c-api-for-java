@@ -4,14 +4,13 @@ import com.sun.jna.Memory;
 import com.sun.jna.Native;
 import com.sun.jna.Pointer;
 import com.sun.jna.PointerType;
-import com.sun.jna.platform.unix.LibCAPI;
 
 public abstract class wasm_pointer_vec_t<T extends PointerType> extends wasm_vec_t {
 	public wasm_pointer_vec_t() {
 	}
 
 	public wasm_pointer_vec_t(T[] dataElements) {
-		this.size = new LibCAPI.size_t(dataElements.length);
+		this.size = new size_t(dataElements.length);
 
 		Pointer data = new Memory(Native.POINTER_SIZE * dataElements.length);
 		for (int i = 0; i < dataElements.length; i++) {

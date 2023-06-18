@@ -5,7 +5,6 @@ import java.util.List;
 
 import com.sun.jna.Pointer;
 import com.sun.jna.Structure;
-import com.sun.jna.platform.unix.LibCAPI.size_t;
 
 public abstract class wasm_vec_t extends Structure {
 	public size_t size;

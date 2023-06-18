@@ -2,7 +2,6 @@ package jp.hisano.wasm_c_api.jna;
 
 import com.sun.jna.Callback;
 import com.sun.jna.Library;
-import com.sun.jna.platform.unix.LibCAPI.size_t;
 import com.sun.jna.ptr.PointerByReference;
 
 public interface WasmCApi extends Library {

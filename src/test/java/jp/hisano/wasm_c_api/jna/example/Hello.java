@@ -4,11 +4,10 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 
-import com.sun.jna.platform.unix.LibCAPI;
-
 import jp.hisano.wasm_c_api.jna.Library;
 import static jp.hisano.wasm_c_api.jna.Library.Engine.*;
 import jp.hisano.wasm_c_api.jna.WasmCApi;
+import jp.hisano.wasm_c_api.jna.size_t;
 import jp.hisano.wasm_c_api.jna.wasm_engine_t_pointer;
 import jp.hisano.wasm_c_api.jna.wasm_store_t_pointer;
 import jp.hisano.wasm_c_api.jna.wasm_byte_vec_t;
@@ -56,7 +55,7 @@ public class Hello {
 		File file = new File("hello.wasm");
 		byte[] fileContent = Files.readAllBytes(file.toPath());
 		wasm_byte_vec_t binary = new wasm_byte_vec_t();
-		api.wasm_byte_vec_new_uninitialized(binary, new LibCAPI.size_t(file.length()));
+		api.wasm_byte_vec_new_uninitialized(binary, new size_t(file.length()));
 		binary.data.write(0, fileContent, 0, fileContent.length);
 		/*
   // Validate.
