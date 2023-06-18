@@ -19,6 +19,7 @@ import jp.hisano.wasm_c_api.jna.wasm_extern_vec_t;
 import jp.hisano.wasm_c_api.jna.wasm_instance_t_pointer;
 import jp.hisano.wasm_c_api.jna.wasm_val_vec_t;
 
+// Java version of this Hello application: https://github.com/WebAssembly/wasm-c-api/blob/main/example/hello.c
 public class Hello {
 	public static void main(String[] arguments) throws IOException {
 		WasmCApi api = Library.load(WASMER);
